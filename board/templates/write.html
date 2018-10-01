@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>글작성</title>
+  </head>
+  <body>
+    <h2> 글작성</h2>
+    <form action="" method="POST" enctype="multipart/form-data">
+      <table>
+        <tr>
+          <td>제목</td>
+          <td><input type="text" name="title" style="width: 100%"></td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <textarea name="data" rows="20" cols="50"></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td>첨부파일</td>
+          <td><input type="file" name="filename" /></td>
+        </tr>
+      </table>
+      <input type="submit" value="작성">
+      <input type="button" value="목록" onclick="location.href='/board'">
+    </form>
+  </body>
+</html>

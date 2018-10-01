@@ -1,0 +1,82 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>{{ posts[0][1] }}</title>
+<style>
+  table {
+      width: 50%;
+      border: 2px solid #444444;
+      border-collapse: collapse;
+    }
+  th, td {
+        border: 1px solid #444444;
+        padding: 10px;}
+  div {
+    text-align: center;
+  }
+</style>
+  </head>
+  <body>
+    <table align = "center" border="5">
+      <tr>
+        <th height="30" width="50">글번호</th>
+        <td>{{ posts[0][0] }}</td>
+        <th width="50">작성자</th>
+        <td>{{ posts[0][2] }}</td>
+      </tr>
+      <tr>
+        <th colspan="2" width="30">제목</th>
+        <td colspan="2" width="50">{{ posts[0][1] }}</td>
+      </tr>
+      <tr>
+        <th colspan="2" width="30">첨부파일</th>
+        <td colspan="2" width="50"><a href="/file_download/{{ posts[0][0] }}/{{ posts[0][5] }}" style="text-decoration:none" download>{{ posts[0][5] }}</a></td>
+      </tr>
+      <tr>
+        <td colspan="4" height="400" align="top">
+          {{ posts[0][4] }}
+        </td>
+      </tr>
+    </table>
+    <br>
+    <div>
+      {% if session == posts[0][2] %}
+      <input type="button" value="수정" onclick="location.href='/board_update/{{ posts[0][0] }}'">
+      <input type="button" value="삭제" onclick="location.href='/board_delete/{{ posts[0][0] }}'">
+      <input type="button" value="목록" onclick="location.href='/board'">
+      {% else %}
+      <input type="button" value="목록" onclick="location.href='/board'">
+      {% endif %}
+    </div><br><br>
+    <form action='' method="post" align="center">
+      <fieldset>
+        <legend align = "center">댓글</legend>
+          <input type="text" name="comment" style=width:600px; >
+          <input type="submit" value="등록"></div>
+          <hr />
+          <table align = "center" border = "5" style="table-layout:fixed; word-break:break-all;">
+            <tr align = "center">
+              <th>댓글번호</th>
+              <th>내용</th>
+              <th>작성자</th>
+              <th>날짜</th> 
+            </tr>
+            {% for i in com_posts %}
+            <tr align = "center">
+              {% if i[4] == posts[0][0] %}
+              <td> {{ i[0] }} </td>
+              <td> {{ i[1] }} </td>
+              <td> {{ i[2] }} </td>
+              <td> {{ i[3] }} </td> 
+              {% if session == i[2] %}
+              <td>
+                <input type="button" value="수정" onclick="location.href='/comment_update/{{ i[0] }}'">
+              <input type="button" value="삭제" onclick="location.href='/comment_delete/{{ i[0] }}'"></td>
+              {% endif %}
+              {% endif %}
+            {% endfor %}
+            </tr>
+          </table>
+      </fieldset>
+  </body>
+</html>

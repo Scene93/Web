@@ -1,0 +1,13 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <h3>Hello {{ ID }}! Do you really want to leave your membership?</h3>
+    <h3>if you want to leave membership, enter your ID and PASSWORD</h3>
+    <form action="/delete" method='POST'>
+      ID: <input type="text", name="name">
+      PW: <input type="password", name="password">
+      <input type="submit">
+    </form>
+  </body>
+</html>
